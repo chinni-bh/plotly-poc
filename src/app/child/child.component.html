@@ -1,0 +1,59 @@
+<p>child works!</p>
+<!-- <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot> -->
+<div #plot></div>
+<hr />
+<!-- <div #plot2></div> -->
+<hr />
+<!-- <div #plot3></div> -->
+<hr />
+<div #plot4></div>
+<hr />
+<!-- <div #plot5></div> -->
+
+<!-- <div *ngIf='ishover' >
+  <h1>blah blah </h1>
+  <app-tooltip  [ngStyle]="myStyles" [scrx]='myStyles.left' [scry]='myStyles.top'></app-tooltip>
+</div> -->
+<!-- <app-tooltip *ngIf='ishover' [ngStyle]="myStyles" [scrx]='myStyles.left' [scry]='myStyles.top'></app-tooltip> -->
+<!-- <app-notes-tooltip *ngIf='ishoverNotes' [ngStyle]="myStyles" (close)='closeNote()'></app-notes-tooltip>
+<app-create-note *ngIf='addNote' [ngStyle]="myStyles" [data]='eventData' (add)='createNote($event)'></app-create-note> -->
+
+<script>
+  $(function () {
+    $("#slider-range").slider({
+      range: true,
+      min: new Date("2010.01.01").getTime() / 1000,
+      max: new Date("2014.01.01").getTime() / 1000,
+      step: 86400,
+      values: [
+        new Date("2013.01.01").getTime() / 1000,
+        new Date("2013.02.01").getTime() / 1000,
+      ],
+      slide: function (event, ui) {
+        $("#amount").val(
+          new Date(ui.values[0] * 1000).toDateString() +
+            " - " +
+            new Date(ui.values[1] * 1000).toDateString()
+        );
+      },
+    });
+    $("#amount").val(
+      new Date($("#slider-range").slider("values", 0) * 1000).toDateString() +
+        " - " +
+        new Date($("#slider-range").slider("values", 1) * 1000).toDateString()
+    );
+  });
+</script>
+
+<!-- <p>
+  <label for="amount">Date range:</label>
+  <input
+    type="text"
+    #amount
+    id="amount"
+    style="border: 0; color: #f6931f; font-weight: bold"
+    size="100"
+  />
+</p> -->
+
+<div id="slider-range" #sliderrange></div>

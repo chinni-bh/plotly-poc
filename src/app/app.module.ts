@@ -12,6 +12,7 @@ import { NotesTooltipComponent } from './notes-tooltip/notes-tooltip.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { ChildComponent } from './child/child.component';
 import { CustomRangeSliderComponent } from './custom-range-slider/custom-range-slider.component';
+import { CusRanSliderComponent } from './cus-ran-slider/cus-ran-slider.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CustomRangeSliderComponent } from './custom-range-slider/custom-range-s
     TooltipComponent,
     NotesTooltipComponent,
     CreateNoteComponent,
-    CustomRangeSliderComponent
+    CustomRangeSliderComponent,
+    CusRanSliderComponent
   ],
   imports: [
     BrowserModule

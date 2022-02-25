@@ -61,11 +61,11 @@ export class MultiplePlotsGraphComponent implements OnInit {
       var trace3 = {
         type: 'scatter',
         mode: 'text',
-        x: ['2016-06-17'],
-        y: [150],
+        x: ['2016-05-10', '2016-06-17', '2016-07-27'],
+        y: [150, 150, 150],
         xaxis: 'x',
         yaxis: 'y2',
-        marker: { size: 2, symbol: 'triangle-right', color: 'white' },
+        // marker: { size: 32, symbol: 'triangle-right', color: 'white' },
         showlegend: false,
         // opacity: 0.1,
         // texttemplate: `<h1>template</h1>`,
@@ -315,7 +315,7 @@ export class MultiplePlotsGraphComponent implements OnInit {
       ).then((htmlElement) => {
         //=
         htmlElement.on('plotly_relayout', (eventdata) => {
-          if (eventdata['yaxis.range[0]']) {
+          if (eventdata && eventdata['yaxis.range[0]']) {
             console.log(JSON.stringify(eventdata));
 
             var y_min = eventdata['yaxis.range[0]'];
@@ -384,23 +384,25 @@ export class MultiplePlotsGraphComponent implements OnInit {
           }
         });
 
-        // htmlElement.on('plotly_hover', function (data) {
-        //   // var xaxis = data.points[0].xaxis,
-        //   //   yaxis = data.points[0].yaxis;
-        //   // var infotext = data.points.map(function (d) {
-        //   //   return 'width: ' + xaxis.l2p(d.x) + ', height: ' + yaxis.l2p(d.y);
-        //   // });
-        //   // let hoverInfo = document.getElementById('hoverinfo');
-        //   // hoverInfo.innerHTML = infotext.join('<br/>');
-        //   Plotly.Fx.hover(
-        //     'myDiv',
-        //     [
-        //       { curveNumber: 0, pointNumber: data.points[0].pointNumber },
-        //       { curveNumber: 1, pointNumber: data.points[0].pointNumber },
-        //     ],
-        //     ['xy2']
-        //   );
-        // });
+        htmlElement.on('plotly_hover', function (data) {
+          console.log('hover event data', data);
+
+          // var xaxis = data.points[0].xaxis,
+          //   yaxis = data.points[0].yaxis;
+          // var infotext = data.points.map(function (d) {
+          //   return 'width: ' + xaxis.l2p(d.x) + ', height: ' + yaxis.l2p(d.y);
+          // });
+          // let hoverInfo = document.getElementById('hoverinfo');
+          // hoverInfo.innerHTML = infotext.join('<br/>');
+          // Plotly.Fx.hover(
+          //   'myDiv',
+          //   [
+          //     { curveNumber: 0, pointNumber: data.points[0].pointNumber },
+          //     { curveNumber: 1, pointNumber: data.points[0].pointNumber },
+          //   ],
+          //   ['xy2']
+          // );
+        });
 
         // htmlElement.on('plotly_click', function (data) {
         //   var pts = '';

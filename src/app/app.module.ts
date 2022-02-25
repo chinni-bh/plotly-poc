@@ -13,6 +13,7 @@ import { CreateNoteComponent } from './create-note/create-note.component';
 import { ChildComponent } from './child/child.component';
 import { CustomRangeSliderComponent } from './custom-range-slider/custom-range-slider.component';
 import { ModebarEventsComponent } from './modebar-events/modebar-events.component';
+import { MultiplePlotsGraphComponent } from './multiple-plots-graph/multiple-plots-graph.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ModebarEventsComponent } from './modebar-events/modebar-events.componen
     NotesTooltipComponent,
     CreateNoteComponent,
     CustomRangeSliderComponent,
-    ModebarEventsComponent
+    ModebarEventsComponent,
+    MultiplePlotsGraphComponent
   ],
   imports: [
     BrowserModule

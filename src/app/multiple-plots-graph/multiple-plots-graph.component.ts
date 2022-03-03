@@ -60,26 +60,76 @@ export class MultiplePlotsGraphComponent implements OnInit {
 
       var trace3 = {
         type: 'scatter',
-        mode: 'text',
-        x: ['2016-05-10', '2016-06-17', '2016-07-27'],
-        y: [150, 150, 150],
+        mode: 'markers',
+        // name: 'Markers and Text',
+        text: ['Text A', 'Text B'],
+        // textposition: 'top',
+        // hovertext: 'text hover',
+        x: ['2016-05-31'],
+        y: [150],
         xaxis: 'x',
         yaxis: 'y2',
-        // marker: { size: 32, symbol: 'triangle-right', color: 'white' },
+        marker: {
+          size: 25,
+          // size: [25, 10],
+          symbol: 'circle-dot',
+          color: 'red',
+          // color: ['red', 'green'],
+        },
         showlegend: false,
-        // opacity: 0.1,
-        // texttemplate: `<h1>template</h1>`,
-        hovertemplate: '<b>IMAGES</b>: <br>',
+        opacity: 1,
+        // texttemplate: '',
+        // sizemode: 'area',
+        // sizeref: 10,
+        hovertemplate: [
+          '<b>IMAGES</b>: $%{x} <br> <b>%{text}</b> <br>',
+          '<b>IMAGES</b>: $%{x} <br> <b>%{text}</b> <br>',
+        ],
+        // hoverlabel: {
+        //   bordercolor: ['red'],
+        // },
+        // hoveron: 'points+fills',
+      };
+      var trace3_dup = {
+        type: 'scatter',
+        mode: 'markers',
+        // name: 'Markers and Text',
+        // text: ['Text duplication', 'Text B'],
+        // textposition: 'top',
+        // hovertext: 'text hover',
+        x: ['2016-05-31'],
+        y: [150],
+        xaxis: 'x',
+        yaxis: 'y2',
+        marker: {
+          size: 25,
+          // size: [25, 10],
+          symbol: 'circle-dot',
+          color: 'red',
+          // color: ['red', 'green'],
+        },
+        showlegend: false,
+        opacity: 1,
+        // texttemplate: '',
+        // sizemode: 'area',
+        // sizeref: 10,
+        hovertemplate: [
+          '<b>IMAGES</b>: $%{x} <br> <b>%{text}</b> <br>',
+          '<b>IMAGES</b>: $%{x} <br> <b>%{text}</b> <br>',
+        ],
+        // hoverlabel: {
+        //   bordercolor: ['red'],
+        // },
+        // hoveron: 'points+fills',
       };
 
       var trace4 = {
         type: 'scatter',
         mode: 'markers',
-        x: ['2016-05-10'],
-        y: [160],
+        x: ['2016-05-31'],
+        y: [150],
         xaxis: 'x',
         yaxis: 'y2',
-
         marker: {
           color: 'white',
           size: 15,
@@ -116,7 +166,7 @@ export class MultiplePlotsGraphComponent implements OnInit {
         hovertemplate: '<b>TEXT</b>: <br>',
       };
 
-      var data = [trace1, trace2, trace3];
+      var data = [trace1, trace2, trace3, trace3_dup];
 
       var layout = {
         title: '<b>Markers in Sub Plots</b>',
@@ -175,38 +225,6 @@ export class MultiplePlotsGraphComponent implements OnInit {
           subplots: [['xy2'], ['xy']],
           roworder: 'top to bottom',
         },
-
-        // shapes: [
-        //   //   // {
-        //   //   //   type: 'path',
-        //   //   //   path: 'M 1 1 L 1 3 L 4 1 Z',
-        //   //   //   fillcolor: 'rgba(44, 160, 101, 0.5)',
-        //   //   //   line: {
-        //   //   //     color: 'rgb(44, 160, 101)',
-        //   //   //   },
-        //   //   //   // x: '2015-06-17',
-        //   //   //   // y: [150, 150],
-        //   //   // },
-        //   {
-        //     type: 'rect',
-        //     // type: 'path',
-        //     // path: 'M 4,4 Q 6,0 8,4',
-        //     // path: 'M 1 1 L 1 3 L 4 1 Z',
-        //     // x-reference is assigned to the x-values
-        //     xref: 'x',
-        //     // y-reference is assigned to the plot paper [0,1]
-        //     yref: 'y2',
-        //     // x0: '2016-02-04',
-        //     // y0: 0,
-        //     // x1: '2016-02-04',
-        //     // y1: 1,
-        //     fillcolor: 'red',
-        //     opacity: 1,
-        //     line: {
-        //       width: 10,
-        //     },
-        //   },
-        // ],
       };
       var image_layout = {
         yaxis: {
@@ -234,7 +252,6 @@ export class MultiplePlotsGraphComponent implements OnInit {
         },
         yaxis2: {
           //yaxis2 represents the y2 value, defined in the data Array
-
           title: "Marker's",
           titlefont: {
             family: 'Arial, sans-serif',
@@ -243,12 +260,13 @@ export class MultiplePlotsGraphComponent implements OnInit {
           },
           domain: [0.756, 1],
           rangemode: 'normal',
+          // zeroline: false,
           // position: 1,
-          dtick: 1,
+          // dtick: 0.01,
           autotick: false,
-          showticklabels: false,
+          showticklabels: true,
           // range: [1, 3],
-          showgrid: false,
+          showgrid: true,
           autorange: true,
           // hoverformat: 'yaxis-2',
           // tick0: 3,
@@ -257,41 +275,93 @@ export class MultiplePlotsGraphComponent implements OnInit {
           // tickcolor: '#000',
         }, //Markers Graph
         title: 'image_layout',
-        images: [
+        hovermode: 'x',
+        // images: [
+        //   {
+        //     source: 'assets/marker.png',
+        //     xref: 'x',
+        //     yref: 'y2',
+        //     x: '2016-05-10',
+        //     y: 150,
+        //     sizex: 10 * 24 * 60 * 60 * 1000,
+        //     sizey: 50,
+        //     xanchor: 'center',
+        //     yanchor: 'middle',
+        //   },
+        //   {
+        //     source: 'assets/marker.png',
+        //     xref: 'x',
+        //     yref: 'y2',
+        //     x: '2016-06-17',
+        //     y: 150,
+        //     sizex: 10 * 24 * 60 * 60 * 1000,
+        //     sizey: 50,
+        //     xanchor: 'center',
+        //     yanchor: 'middle',
+        //   },
+        //   {
+        //     source: 'assets/marker.png',
+        //     xref: 'x',
+        //     yref: 'y2',
+        //     x: '2016-07-27',
+        //     y: 150,
+        //     sizex: 10 * 24 * 60 * 60 * 1000,
+        //     sizey: 50,
+        //     xanchor: 'center',
+        //     yanchor: 'middle',
+        //   },
+        // ],
+        shapes: [
           {
-            source: 'assets/marker.png',
+            type: 'path', //draw a custom SVG path using `path`. with respect to the axes' sizing mode.
+            xsizemode: 'pixel',
+            ysizemode: 'pixel',
+            // x0: '2016-05-31',
+            // yo: 150,
+            xanchor: '2016-05-31',
+            yanchor: 150,
             xref: 'x',
             yref: 'y2',
-            x: '2016-05-10',
-            y: 150,
-            sizex: 10 * 24 * 60 * 60 * 1000,
-            sizey: 50,
-            xanchor: 'center',
-            yanchor: 'middle',
+            path: 'M10 20C15.5229 20 20 15.5228 20 10C20 4.47716 15.5229 0 10 0C4.47705 0 0 4.47716 0 10C0 15.5228 4.47705 20 10 20ZM7.48999 10.0369C7.48999 9.8004 7.52393 9.5705 7.58521 9.35371L15.4851 17L16.4429 16.0738L3.95776 4L3 4.92622L4.54199 6.41739C3.82861 7.45528 3.41431 8.69682 3.41431 10.0369C3.41431 11.8499 4.17505 13.4922 5.40454 14.6812L6.36914 13.7484C5.38428 12.8024 4.77295 11.4886 4.77295 10.0369C4.77295 9.06468 5.04468 8.1516 5.52686 7.36989L6.52539 8.33553C6.27417 8.85448 6.13159 9.42598 6.13159 10.0369C6.13159 11.1273 6.58667 12.1127 7.32031 12.8287L8.28491 11.8959C7.79565 11.4164 7.48999 10.7595 7.48999 10.0369ZM14.283 10.0369C14.283 10.6478 14.1401 11.2193 13.8889 11.7383L12.8291 10.7201C12.8904 10.5033 12.9243 10.2734 12.9243 10.0369C12.9243 9.3143 12.6187 8.65741 12.1228 8.18443L13.0874 7.25165C13.8276 7.96109 14.283 8.94644 14.283 10.0369ZM14.8875 12.7039C15.3696 11.9222 15.6414 11.0091 15.6414 10.0369C15.6414 8.58514 15.03 7.27135 14.0452 6.32542L15.0098 5.39262C16.2393 6.5816 17 8.22385 17 10.0369C17 11.377 16.5857 12.6185 15.8723 13.6564L14.8875 12.7039Z',
+            // fillrule: 'nonzero',
+            fillcolor: 'black',
+            line: {
+              color: 'white',
+              width: 0.7,
+            },
           },
           {
-            source: 'assets/marker.png',
+            type: 'path', //draw a custom SVG path using `path`. with respect to the axes' sizing mode.
+            xsizemode: 'pixel',
+            ysizemode: 'pixel',
+            // x0: '2016-05-31',
+            // yo: 150,
+            xanchor: '2016-05-31',
+            yanchor: 150,
             xref: 'x',
             yref: 'y2',
-            x: '2016-06-17',
-            y: 150,
-            sizex: 10 * 24 * 60 * 60 * 1000,
-            sizey: 50,
-            xanchor: 'center',
-            yanchor: 'middle',
-          },
-          {
-            source: 'assets/marker.png',
-            xref: 'x',
-            yref: 'y2',
-            x: '2016-07-27',
-            y: 150,
-            sizex: 10 * 24 * 60 * 60 * 1000,
-            sizey: 50,
-            xanchor: 'center',
-            yanchor: 'middle',
+            path: 'M10 20C15.5229 20 20 15.5228 20 10C20 4.47716 15.5229 0 10 0C4.47705 0 0 4.47716 0 10C0 15.5228 4.47705 20 10 20ZM7.48999 10.0369C7.48999 9.8004 7.52393 9.5705 7.58521 9.35371L15.4851 17L16.4429 16.0738L3.95776 4L3 4.92622L4.54199 6.41739C3.82861 7.45528 3.41431 8.69682 3.41431 10.0369C3.41431 11.8499 4.17505 13.4922 5.40454 14.6812L6.36914 13.7484C5.38428 12.8024 4.77295 11.4886 4.77295 10.0369C4.77295 9.06468 5.04468 8.1516 5.52686 7.36989L6.52539 8.33553C6.27417 8.85448 6.13159 9.42598 6.13159 10.0369C6.13159 11.1273 6.58667 12.1127 7.32031 12.8287L8.28491 11.8959C7.79565 11.4164 7.48999 10.7595 7.48999 10.0369ZM14.283 10.0369C14.283 10.6478 14.1401 11.2193 13.8889 11.7383L12.8291 10.7201C12.8904 10.5033 12.9243 10.2734 12.9243 10.0369C12.9243 9.3143 12.6187 8.65741 12.1228 8.18443L13.0874 7.25165C13.8276 7.96109 14.283 8.94644 14.283 10.0369ZM14.8875 12.7039C15.3696 11.9222 15.6414 11.0091 15.6414 10.0369C15.6414 8.58514 15.03 7.27135 14.0452 6.32542L15.0098 5.39262C16.2393 6.5816 17 8.22385 17 10.0369C17 11.377 16.5857 12.6185 15.8723 13.6564L14.8875 12.7039Z',
+            // fillrule: 'nonzero',
+            fillcolor: 'black',
+            line: {
+              color: 'white',
+              width: 0.7,
+            },
           },
         ],
+        // annotations: [
+        //   {
+        //     x: '2016-05-31',
+        //     y: 150,
+        //     xref: 'x',
+        //     yref: 'y2',
+        //     text: 'Annotation Text',
+        //     showarrow: true,
+        //     // arrowhead: 7,
+        //     ax: -25,
+        //     ay: -40,
+        //   },
+        // ],
         grid: {
           pattern: 'independent',
           //when we dont define explict defination for y-axis, 'ygap' works!!
@@ -310,100 +380,96 @@ export class MultiplePlotsGraphComponent implements OnInit {
         data,
         image_layout,
         {
-          // scrollZoom: true,
+          scrollZoom: true,
         }
       ).then((htmlElement) => {
         //=
-        htmlElement.on('plotly_relayout', (eventdata) => {
-          if (eventdata && eventdata['yaxis.range[0]']) {
-            console.log(JSON.stringify(eventdata));
-
-            var y_min = eventdata['yaxis.range[0]'];
-            var y_max = eventdata['yaxis.range[1]'];
-            var y_axis_diff =
-              eventdata['yaxis.range[1]'] - eventdata['yaxis.range[0]'];
-            console.log('y_max', y_max);
-            console.log('y_difference', y_axis_diff);
-            var layout_update = {
-              // 'images.sizex': [y_axis_diff, y_axis_diff, y_axis_diff],
-              // 'images.y': [y_axis_diff, y_axis_diff, y_axis_diff],
-              images: [
-                {
-                  source: 'assets/marker.png',
-                  xref: 'x',
-                  yref: 'y2',
-                  x: '2016-05-10',
-                  y: 150,
-                  sizex: (y_axis_diff / 2) * 24 * 60 * 60 * 1000,
-                  sizey: y_axis_diff / 2,
-                  xanchor: 'center',
-                  yanchor: 'middle',
-                },
-                {
-                  source: 'assets/marker.png',
-                  xref: 'x',
-                  yref: 'y2',
-                  x: '2016-06-17',
-                  y: 150,
-                  sizex: (y_axis_diff / 2) * 24 * 60 * 60 * 1000,
-                  sizey: y_axis_diff / 2,
-                  xanchor: 'center',
-                  yanchor: 'middle',
-                },
-                {
-                  source: 'assets/marker.png',
-                  xref: 'x',
-                  yref: 'y2',
-                  x: '2016-07-27',
-                  y: 150,
-                  sizex: (y_axis_diff / 2) * 24 * 60 * 60 * 1000,
-                  sizey: y_axis_diff / 2,
-                  xanchor: 'center',
-                  yanchor: 'middle',
-                },
-              ],
-              autorange: true,
-              title: 'changed_layout',
-            };
-            var new_trace = {
-              type: 'scatter',
-              // mode: 'markers',
-              x: ['2016-06-17'],
-              y: [150],
-              xaxis: 'x',
-              yaxis: 'y2',
-              // marker: { size: 32, symbol: 'triangle-right', color: 'red' },
-              showlegend: false,
-              // opacity: 0.1,
-              // texttemplate: `<h1>template</h1>`,
-              hovertemplate: '<b>IMAGES</b>: <br>',
-            };
-            Plotly.deleteTraces('myDiv', 2);
-            Plotly.addTraces('myDiv', new_trace);
-            Plotly.update('myDiv', {}, layout_update, [2]);
-          }
-        });
-
-        htmlElement.on('plotly_hover', function (data) {
-          console.log('hover event data', data);
-
-          // var xaxis = data.points[0].xaxis,
-          //   yaxis = data.points[0].yaxis;
-          // var infotext = data.points.map(function (d) {
-          //   return 'width: ' + xaxis.l2p(d.x) + ', height: ' + yaxis.l2p(d.y);
-          // });
-          // let hoverInfo = document.getElementById('hoverinfo');
-          // hoverInfo.innerHTML = infotext.join('<br/>');
-          // Plotly.Fx.hover(
-          //   'myDiv',
-          //   [
-          //     { curveNumber: 0, pointNumber: data.points[0].pointNumber },
-          //     { curveNumber: 1, pointNumber: data.points[0].pointNumber },
-          //   ],
-          //   ['xy2']
-          // );
-        });
-
+        // htmlElement.on('plotly_relayout', (eventdata) => {
+        //   if (eventdata && eventdata['yaxis.range[0]']) {
+        //     console.log(JSON.stringify(eventdata));
+        //     var y_min = eventdata['yaxis.range[0]'];
+        //     var y_max = eventdata['yaxis.range[1]'];
+        //     var y_axis_diff =
+        //       eventdata['yaxis.range[1]'] - eventdata['yaxis.range[0]'];
+        //     console.log('y_max', y_max);
+        //     console.log('y_difference', y_axis_diff);
+        //     var layout_update = {
+        //       // 'images.sizex': [y_axis_diff, y_axis_diff, y_axis_diff],
+        //       // 'images.y': [y_axis_diff, y_axis_diff, y_axis_diff],
+        //       images: [
+        //         {
+        //           source: 'assets/marker.png',
+        //           xref: 'x',
+        //           yref: 'y2',
+        //           x: '2016-05-10',
+        //           y: 150,
+        //           sizex: (y_axis_diff / 2) * 24 * 60 * 60 * 1000,
+        //           sizey: y_axis_diff / 2,
+        //           xanchor: 'center',
+        //           yanchor: 'middle',
+        //         },
+        //         {
+        //           source: 'assets/marker.png',
+        //           xref: 'x',
+        //           yref: 'y2',
+        //           x: '2016-06-17',
+        //           y: 150,
+        //           sizex: (y_axis_diff / 2) * 24 * 60 * 60 * 1000,
+        //           sizey: y_axis_diff / 2,
+        //           xanchor: 'center',
+        //           yanchor: 'middle',
+        //         },
+        //         {
+        //           source: 'assets/marker.png',
+        //           xref: 'x',
+        //           yref: 'y2',
+        //           x: '2016-07-27',
+        //           y: 150,
+        //           sizex: (y_axis_diff / 2) * 24 * 60 * 60 * 1000,
+        //           sizey: y_axis_diff / 2,
+        //           xanchor: 'center',
+        //           yanchor: 'middle',
+        //         },
+        //       ],
+        //       autorange: true,
+        //       title: 'changed_layout',
+        //     };
+        //     var new_trace = {
+        //       type: 'scatter',
+        //       // mode: 'markers',
+        //       x: ['2016-06-17'],
+        //       y: [150],
+        //       xaxis: 'x',
+        //       yaxis: 'y2',
+        //       // marker: { size: 32, symbol: 'triangle-right', color: 'red' },
+        //       showlegend: false,
+        //       // opacity: 0.1,
+        //       // texttemplate: `<h1>template</h1>`,
+        //       hovertemplate: '<b>IMAGES</b>: <br>',
+        //     };
+        //     Plotly.deleteTraces('myDiv', 2);
+        //     Plotly.addTraces('myDiv', new_trace);
+        //     Plotly.update('myDiv', {}, layout_update, [2]);
+        //   }
+        // });
+        // htmlElement.on('plotly_hover', function (data) {
+        //   console.log('hover event data', data);
+        //   // var xaxis = data.points[0].xaxis,
+        //   //   yaxis = data.points[0].yaxis;
+        //   // var infotext = data.points.map(function (d) {
+        //   //   return 'width: ' + xaxis.l2p(d.x) + ', height: ' + yaxis.l2p(d.y);
+        //   // });
+        //   // let hoverInfo = document.getElementById('hoverinfo');
+        //   // hoverInfo.innerHTML = infotext.join('<br/>');
+        //   // Plotly.Fx.hover(
+        //   //   'myDiv',
+        //   //   [
+        //   //     { curveNumber: 0, pointNumber: data.points[0].pointNumber },
+        //   //     { curveNumber: 1, pointNumber: data.points[0].pointNumber },
+        //   //   ],
+        //   //   ['xy2']
+        //   // );
+        // });
         // htmlElement.on('plotly_click', function (data) {
         //   var pts = '';
         //   if (data.points[0]['data'].mode === 'markers') {
